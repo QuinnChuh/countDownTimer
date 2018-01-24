@@ -1,0 +1,461 @@
+|countDownTimer
+clk => lcd_display:u7.clk
+clk => counter:u6.clk
+clk => control:u5.clk
+clk => short_or_long:u4.clk
+clk => remove_jitter:u3.clk
+clk => remove_jitter:u2.clk
+clk => remove_jitter:u1.clk
+key_reset => remove_jitter:u1.key_in
+key_start_pause => remove_jitter:u2.key_in
+key_inc => remove_jitter:u3.key_in
+sel[0] <= lcd_display:u7.sel[0]
+sel[1] <= lcd_display:u7.sel[1]
+sel[2] <= lcd_display:u7.sel[2]
+segs[0] <= lcd_display:u7.segs[0]
+segs[1] <= lcd_display:u7.segs[1]
+segs[2] <= lcd_display:u7.segs[2]
+segs[3] <= lcd_display:u7.segs[3]
+segs[4] <= lcd_display:u7.segs[4]
+segs[5] <= lcd_display:u7.segs[5]
+segs[6] <= lcd_display:u7.segs[6]
+alarm <= control:u5.alarm_en
+
+
+|countDownTimer|remove_jitter:u1
+clk => key_l[3].CLK
+clk => key_l[2].CLK
+clk => key_l[1].CLK
+clk => key_l[0].CLK
+clk => key_h[3].CLK
+clk => key_h[2].CLK
+clk => key_h[1].CLK
+clk => key_h[0].CLK
+clk => key_out~reg0.CLK
+key_in => key_h~3.OUTPUTSELECT
+key_in => key_h~2.OUTPUTSELECT
+key_in => key_h~1.OUTPUTSELECT
+key_in => key_h~0.OUTPUTSELECT
+key_in => key_l~3.OUTPUTSELECT
+key_in => key_l~2.OUTPUTSELECT
+key_in => key_l~1.OUTPUTSELECT
+key_in => key_l~0.OUTPUTSELECT
+key_out <= key_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|remove_jitter:u2
+clk => key_l[3].CLK
+clk => key_l[2].CLK
+clk => key_l[1].CLK
+clk => key_l[0].CLK
+clk => key_h[3].CLK
+clk => key_h[2].CLK
+clk => key_h[1].CLK
+clk => key_h[0].CLK
+clk => key_out~reg0.CLK
+key_in => key_h~3.OUTPUTSELECT
+key_in => key_h~2.OUTPUTSELECT
+key_in => key_h~1.OUTPUTSELECT
+key_in => key_h~0.OUTPUTSELECT
+key_in => key_l~3.OUTPUTSELECT
+key_in => key_l~2.OUTPUTSELECT
+key_in => key_l~1.OUTPUTSELECT
+key_in => key_l~0.OUTPUTSELECT
+key_out <= key_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|remove_jitter:u3
+clk => key_l[3].CLK
+clk => key_l[2].CLK
+clk => key_l[1].CLK
+clk => key_l[0].CLK
+clk => key_h[3].CLK
+clk => key_h[2].CLK
+clk => key_h[1].CLK
+clk => key_h[0].CLK
+clk => key_out~reg0.CLK
+key_in => key_h~3.OUTPUTSELECT
+key_in => key_h~2.OUTPUTSELECT
+key_in => key_h~1.OUTPUTSELECT
+key_in => key_h~0.OUTPUTSELECT
+key_in => key_l~3.OUTPUTSELECT
+key_in => key_l~2.OUTPUTSELECT
+key_in => key_l~1.OUTPUTSELECT
+key_in => key_l~0.OUTPUTSELECT
+key_out <= key_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|short_or_long:u4
+clk => frequencyDivider:inner1.clkIn
+key_in => press_time:inner2.key_in
+key_state[0] <= press_time:inner2.key_state[0]
+key_state[1] <= press_time:inner2.key_state[1]
+
+
+|countDownTimer|short_or_long:u4|frequencyDivider:inner1
+clkIn => clkTemp.CLK
+clkIn => count[4].CLK
+clkIn => count[3].CLK
+clkIn => count[2].CLK
+clkIn => count[1].CLK
+clkIn => count[0].CLK
+clkOut <= clkTemp.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|short_or_long:u4|press_time:inner2
+clk => temp[1].CLK
+clk => temp[0].CLK
+clk => num[3].CLK
+clk => num[2].CLK
+clk => num[1].CLK
+clk => num[0].CLK
+clk => key_state[1]~reg0.CLK
+clk => key_state[0]~reg0.CLK
+key_in => num~3.OUTPUTSELECT
+key_in => num~2.OUTPUTSELECT
+key_in => num~1.OUTPUTSELECT
+key_in => num~0.OUTPUTSELECT
+key_in => process_0~2.IN0
+key_in => process_0~3.IN0
+key_state[0] <= key_state[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+key_state[1] <= key_state[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|control:u5
+reset => COM~2.IN0
+reset => COM~0.IN0
+start_pause => COM~0.IN1
+start_pause => COM~2.IN1
+zero => COM~4.IN0
+zero => COM~3.IN0
+zero => COM~1.IN1
+cnt_en <= Selector4.DB_MAX_OUTPUT_PORT_TYPE
+cnt_rst <= Selector5.DB_MAX_OUTPUT_PORT_TYPE
+alarm_en <= Selector6.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|counter:u6
+clk => jitter:inner3.clk
+clk => jitter:inner2.clk
+clk => frequencyDivider:inner1.clkIn
+en => jitter:inner3.key_in
+rst => jitter:inner2.key_in
+inc[0] => setInit:inner4.inc[0]
+inc[1] => setInit:inner4.inc[1]
+hour[0] <= testCout:inner7.hour[0]
+hour[1] <= testCout:inner7.hour[1]
+hour[2] <= testCout:inner7.hour[2]
+hour[3] <= testCout:inner7.hour[3]
+min[0] <= testCout:inner7.min[0]
+min[1] <= testCout:inner7.min[1]
+min[2] <= testCout:inner7.min[2]
+min[3] <= testCout:inner7.min[3]
+min[4] <= testCout:inner7.min[4]
+min[5] <= testCout:inner7.min[5]
+min[6] <= testCout:inner7.min[6]
+min[7] <= testCout:inner7.min[7]
+cout <= testCout:inner7.cout
+
+
+|countDownTimer|counter:u6|frequencyDivider:inner1
+clkIn => clkTemp.CLK
+clkIn => count[4].CLK
+clkIn => count[3].CLK
+clkIn => count[2].CLK
+clkIn => count[1].CLK
+clkIn => count[0].CLK
+clkOut <= clkTemp.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|counter:u6|jitter:inner2
+clk => key_l[3].CLK
+clk => key_l[2].CLK
+clk => key_l[1].CLK
+clk => key_l[0].CLK
+clk => key_h[3].CLK
+clk => key_h[2].CLK
+clk => key_h[1].CLK
+clk => key_h[0].CLK
+clk => key_out~reg0.CLK
+key_in => key_h~3.OUTPUTSELECT
+key_in => key_h~2.OUTPUTSELECT
+key_in => key_h~1.OUTPUTSELECT
+key_in => key_h~0.OUTPUTSELECT
+key_in => key_l~3.OUTPUTSELECT
+key_in => key_l~2.OUTPUTSELECT
+key_in => key_l~1.OUTPUTSELECT
+key_in => key_l~0.OUTPUTSELECT
+key_out <= key_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|counter:u6|jitter:inner3
+clk => key_l[3].CLK
+clk => key_l[2].CLK
+clk => key_l[1].CLK
+clk => key_l[0].CLK
+clk => key_h[3].CLK
+clk => key_h[2].CLK
+clk => key_h[1].CLK
+clk => key_h[0].CLK
+clk => key_out~reg0.CLK
+key_in => key_h~3.OUTPUTSELECT
+key_in => key_h~2.OUTPUTSELECT
+key_in => key_h~1.OUTPUTSELECT
+key_in => key_h~0.OUTPUTSELECT
+key_in => key_l~3.OUTPUTSELECT
+key_in => key_l~2.OUTPUTSELECT
+key_in => key_l~1.OUTPUTSELECT
+key_in => key_l~0.OUTPUTSELECT
+key_out <= key_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|counter:u6|setInit:inner4
+clk => \startTime_latch:minute_start_buffer1[6].CLK
+clk => \startTime_latch:minute_start_buffer1[5].CLK
+clk => \startTime_latch:minute_start_buffer1[4].CLK
+clk => \startTime_latch:minute_start_buffer1[3].CLK
+clk => \startTime_latch:minute_start_buffer1[2].CLK
+clk => \startTime_latch:minute_start_buffer1[1].CLK
+clk => \startTime_latch:minute_start_buffer1[0].CLK
+clk => \startTime_latch:hour_start_buffer1[2].CLK
+clk => \startTime_latch:hour_start_buffer1[1].CLK
+clk => \startTime_latch:hour_start_buffer1[0].CLK
+clk => hour_start[3]~reg0.CLK
+clk => hour_start[2]~reg0.CLK
+clk => hour_start[1]~reg0.CLK
+clk => hour_start[0]~reg0.CLK
+clk => minute_start[7]~reg0.CLK
+clk => minute_start[6]~reg0.CLK
+clk => minute_start[5]~reg0.CLK
+clk => minute_start[4]~reg0.CLK
+clk => minute_start[3]~reg0.CLK
+clk => minute_start[2]~reg0.CLK
+clk => minute_start[1]~reg0.CLK
+clk => minute_start[0]~reg0.CLK
+rst => hour_start[3]~reg0.ACLR
+rst => hour_start[2]~reg0.ACLR
+rst => hour_start[1]~reg0.ACLR
+rst => hour_start[0]~reg0.ACLR
+rst => minute_start[7]~reg0.ACLR
+rst => minute_start[6]~reg0.ACLR
+rst => minute_start[5]~reg0.ACLR
+rst => minute_start[4]~reg0.ACLR
+rst => minute_start[3]~reg0.ACLR
+rst => minute_start[2]~reg0.ACLR
+rst => minute_start[1]~reg0.ACLR
+rst => minute_start[0]~reg0.PRESET
+rst => \startTime_latch:minute_start_buffer1[6].ENA
+rst => \startTime_latch:minute_start_buffer1[5].ENA
+rst => \startTime_latch:minute_start_buffer1[4].ENA
+rst => \startTime_latch:minute_start_buffer1[3].ENA
+rst => \startTime_latch:minute_start_buffer1[2].ENA
+rst => \startTime_latch:minute_start_buffer1[1].ENA
+rst => \startTime_latch:minute_start_buffer1[0].ENA
+rst => \startTime_latch:hour_start_buffer1[2].ENA
+rst => \startTime_latch:hour_start_buffer1[1].ENA
+rst => \startTime_latch:hour_start_buffer1[0].ENA
+inc[0] => Equal1.IN3
+inc[0] => Equal0.IN3
+inc[1] => Equal1.IN2
+inc[1] => Equal0.IN2
+hour_start[0] <= hour_start[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour_start[1] <= hour_start[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour_start[2] <= hour_start[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour_start[3] <= hour_start[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute_start[0] <= minute_start[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute_start[1] <= minute_start[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute_start[2] <= minute_start[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute_start[3] <= minute_start[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute_start[4] <= minute_start[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute_start[5] <= minute_start[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute_start[6] <= minute_start[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute_start[7] <= minute_start[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+setFlag <= GetSetFlag~0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|counter:u6|minuteCountDown:inner5
+clk => minute[7]~reg0.CLK
+clk => minute[6]~reg0.CLK
+clk => minute[5]~reg0.CLK
+clk => minute[4]~reg0.CLK
+clk => minute[3]~reg0.CLK
+clk => minute[2]~reg0.CLK
+clk => minute[1]~reg0.CLK
+clk => minute[0]~reg0.CLK
+clk => hour_CountDown~reg0.CLK
+clk => seconds[5].CLK
+clk => seconds[4].CLK
+clk => seconds[3].CLK
+clk => seconds[2].CLK
+clk => seconds[1].CLK
+clk => seconds[0].CLK
+en => hour_CountDown~2.OUTPUTSELECT
+en => seconds~17.OUTPUTSELECT
+en => seconds~16.OUTPUTSELECT
+en => seconds~15.OUTPUTSELECT
+en => seconds~14.OUTPUTSELECT
+en => seconds~13.OUTPUTSELECT
+en => seconds~12.OUTPUTSELECT
+en => minute[7]~reg0.ENA
+en => minute[6]~reg0.ENA
+en => minute[5]~reg0.ENA
+en => minute[4]~reg0.ENA
+en => minute[3]~reg0.ENA
+en => minute[2]~reg0.ENA
+en => minute[1]~reg0.ENA
+en => minute[0]~reg0.ENA
+rst => minute[7]~reg0.ACLR
+rst => minute[6]~reg0.ACLR
+rst => minute[5]~reg0.ACLR
+rst => minute[4]~reg0.ACLR
+rst => minute[3]~reg0.ACLR
+rst => minute[2]~reg0.ACLR
+rst => minute[1]~reg0.ACLR
+rst => minute[0]~reg0.PRESET
+rst => hour_CountDown~reg0.ACLR
+rst => minute[7]~0.IN0
+rst => seconds[0].ENA
+rst => seconds[5].ENA
+rst => seconds[4].ENA
+rst => seconds[3].ENA
+rst => seconds[2].ENA
+rst => seconds[1].ENA
+minute_start[0] => minute[0]~reg0.ADATA
+minute_start[1] => minute[1]~reg0.ADATA
+minute_start[2] => minute[2]~reg0.ADATA
+minute_start[3] => minute[3]~reg0.ADATA
+minute_start[4] => minute[4]~reg0.ADATA
+minute_start[5] => minute[5]~reg0.ADATA
+minute_start[6] => minute[6]~reg0.ADATA
+minute_start[7] => minute[7]~reg0.ADATA
+setFlag => minute[7]~0.IN1
+setFlag => seconds[5]~1.OUTPUTSELECT
+setFlag => seconds[4]~2.OUTPUTSELECT
+setFlag => seconds[3]~3.OUTPUTSELECT
+setFlag => seconds[2]~4.OUTPUTSELECT
+setFlag => seconds[1]~5.OUTPUTSELECT
+setFlag => seconds[0]~0.OUTPUTSELECT
+setFlag => hour_CountDown~reg0.ENA
+minute[0] <= minute[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[1] <= minute[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[2] <= minute[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[3] <= minute[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[4] <= minute[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[5] <= minute[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[6] <= minute[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[7] <= minute[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour_CountDown <= hour_CountDown~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|counter:u6|hourCountDown:inner6
+clk => hour[3]~reg0.CLK
+clk => hour[2]~reg0.CLK
+clk => hour[1]~reg0.CLK
+clk => hour[0]~reg0.CLK
+en => hour[3]~reg0.ENA
+en => hour[2]~reg0.ENA
+en => hour[1]~reg0.ENA
+en => hour[0]~reg0.ENA
+rst => hour[3]~reg0.ACLR
+rst => hour[2]~reg0.ACLR
+rst => hour[1]~reg0.ACLR
+rst => hour[0]~reg0.ACLR
+rst => hour[3]~0.IN0
+hour_CountDown => hour~8.OUTPUTSELECT
+hour_CountDown => hour~7.OUTPUTSELECT
+hour_CountDown => hour~6.OUTPUTSELECT
+hour_CountDown => hour~5.OUTPUTSELECT
+hour_start[0] => hour[0]~reg0.ADATA
+hour_start[1] => hour[1]~reg0.ADATA
+hour_start[2] => hour[2]~reg0.ADATA
+hour_start[3] => hour[3]~reg0.ADATA
+setFlag => hour[3]~0.IN1
+hour[0] <= hour[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour[1] <= hour[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour[2] <= hour[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour[3] <= hour[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|counter:u6|testCout:inner7
+clk => ~NO_FANOUT~
+hourInput[0] => hour~3.DATAA
+hourInput[0] => Equal0.IN7
+hourInput[1] => hour~2.DATAA
+hourInput[1] => Equal0.IN6
+hourInput[2] => hour~1.DATAA
+hourInput[2] => Equal0.IN5
+hourInput[3] => hour~0.DATAA
+hourInput[3] => Equal0.IN4
+minuteInput[0] => min~7.DATAA
+minuteInput[0] => Equal1.IN15
+minuteInput[1] => min~6.DATAA
+minuteInput[1] => Equal1.IN14
+minuteInput[2] => min~5.DATAA
+minuteInput[2] => Equal1.IN13
+minuteInput[3] => min~4.DATAA
+minuteInput[3] => Equal1.IN12
+minuteInput[4] => min~3.DATAA
+minuteInput[4] => Equal1.IN11
+minuteInput[5] => min~2.DATAA
+minuteInput[5] => Equal1.IN10
+minuteInput[6] => min~1.DATAA
+minuteInput[6] => Equal1.IN9
+minuteInput[7] => min~0.DATAA
+minuteInput[7] => Equal1.IN8
+hour[0] <= hour~3.DB_MAX_OUTPUT_PORT_TYPE
+hour[1] <= hour~2.DB_MAX_OUTPUT_PORT_TYPE
+hour[2] <= hour~1.DB_MAX_OUTPUT_PORT_TYPE
+hour[3] <= hour~0.DB_MAX_OUTPUT_PORT_TYPE
+min[0] <= min~7.DB_MAX_OUTPUT_PORT_TYPE
+min[1] <= min~6.DB_MAX_OUTPUT_PORT_TYPE
+min[2] <= min~5.DB_MAX_OUTPUT_PORT_TYPE
+min[3] <= min~4.DB_MAX_OUTPUT_PORT_TYPE
+min[4] <= min~3.DB_MAX_OUTPUT_PORT_TYPE
+min[5] <= min~2.DB_MAX_OUTPUT_PORT_TYPE
+min[6] <= min~1.DB_MAX_OUTPUT_PORT_TYPE
+min[7] <= min~0.DB_MAX_OUTPUT_PORT_TYPE
+cout <= HourMinuteOut~0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countDownTimer|lcd_display:u7
+clk => sell[2].CLK
+clk => sell[1].CLK
+clk => sell[0].CLK
+clk => di_buffer[3].CLK
+clk => di_buffer[2].CLK
+clk => di_buffer[1].CLK
+clk => di_buffer[0].CLK
+clk => sel[2]~reg0.CLK
+clk => sel[1]~reg0.CLK
+clk => sel[0]~reg0.CLK
+clk => outp[6].CLK
+clk => outp[5].CLK
+clk => outp[4].CLK
+clk => outp[3].CLK
+clk => outp[2].CLK
+clk => outp[1].CLK
+clk => outp[0].CLK
+digits[0] => Mux6.IN5
+digits[1] => Mux5.IN5
+digits[2] => Mux4.IN5
+digits[3] => Mux3.IN5
+digits[4] => Mux6.IN4
+digits[5] => Mux5.IN4
+digits[6] => Mux4.IN4
+digits[7] => Mux3.IN4
+digits[8] => Mux6.IN3
+digits[9] => Mux5.IN3
+digits[10] => Mux4.IN3
+digits[11] => Mux3.IN3
+sel[0] <= sel[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+sel[1] <= sel[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+sel[2] <= sel[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+segs[0] <= outp[0].DB_MAX_OUTPUT_PORT_TYPE
+segs[1] <= outp[1].DB_MAX_OUTPUT_PORT_TYPE
+segs[2] <= outp[2].DB_MAX_OUTPUT_PORT_TYPE
+segs[3] <= outp[3].DB_MAX_OUTPUT_PORT_TYPE
+segs[4] <= outp[4].DB_MAX_OUTPUT_PORT_TYPE
+segs[5] <= outp[5].DB_MAX_OUTPUT_PORT_TYPE
+segs[6] <= outp[6].DB_MAX_OUTPUT_PORT_TYPE
+
+

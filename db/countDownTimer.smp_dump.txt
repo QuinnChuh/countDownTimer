@@ -1,0 +1,7 @@
+
+State Machine - |countDownTimer|control:u5|current_state
+Name current_state.warning current_state.count current_state.stay current_state.start 
+current_state.start 0 0 0 0 
+current_state.stay 0 0 1 1 
+current_state.count 0 1 0 1 
+current_state.warning 1 0 0 1 

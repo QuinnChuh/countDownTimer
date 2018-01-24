@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="countDownTimer">
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|frequencyDivider:inner1|lpm_add_sub:Add0" CBX_FILE_NAME="add_sub_llh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_add_sub:Add2" CBX_FILE_NAME="add_sub_5ih.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_add_sub:Add6" CBX_FILE_NAME="add_sub_5ih.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_divide:Div1" CBX_FILE_NAME="lpm_divide_ldo.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_0ol.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_divide:Div2" CBX_FILE_NAME="lpm_divide_ldo.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_0ol.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|short_or_long:u4|frequencyDivider:inner1|lpm_add_sub:Add0" CBX_FILE_NAME="add_sub_llh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|minuteCountDown:inner5|lpm_add_sub:Add0" CBX_FILE_NAME="add_sub_mlh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_add_sub:Add0" CBX_FILE_NAME="add_sub_nlh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_0ol.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_add_sub:Add1" CBX_FILE_NAME="add_sub_5ih.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|countDownTimer|counter:u6|setInit:inner4|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_ldo.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 2.100 ns
+From           : key_inc
+To             : remove_jitter:u3|lpm_counter:key_l_rtl_11|alt_counter_f10ke:wysi_counter|counter_cell[0]
+From Clock     : --
+To Clock       : clk
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 19.100 ns
+From           : counter:u6|minuteCountDown:inner5|minute[2]
+To             : alarm
+From Clock     : clk
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : 0.100 ns
+From           : key_start_pause
+To             : remove_jitter:u2|lpm_counter:key_h_rtl_1|alt_counter_f10ke:wysi_counter|counter_cell[0]
+From Clock     : --
+To Clock       : clk
+Failed Paths   : 0
+
+Type           : Clock Setup: 'clk'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 14.95 MHz ( period = 66.900 ns )
+From           : counter:u6|setInit:inner4|\startTime_latch:minute_start_buffer1[1]
+To             : counter:u6|setInit:inner4|minute_start[7]
+From Clock     : clk
+To Clock       : clk
+Failed Paths   : 0
+
+Type           : Clock Hold: 'clk'
+Slack          : Not operational: Clock Skew > Data Delay
+Required Time  : None
+Actual Time    : N/A
+From           : counter:u6|jitter:inner2|key_out
+To             : counter:u6|setInit:inner4|\startTime_latch:minute_start_buffer1[5]
+From Clock     : clk
+To Clock       : clk
+Failed Paths   : 30
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 30
+
+--------------------------------------------------------------------------------------
+
